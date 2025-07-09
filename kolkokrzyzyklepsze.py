@@ -226,66 +226,67 @@ def klik(x, y):
                 break
 
         # ruch komputera
-        for j in range(len(zwyciestwa)):
-            opcja = zwyciestwa[j]
-            zajete_komputer = 0 
-            zajete_uzytkownik = 0
-            wolne_teraz = 0
-            for k in range(len(opcja)):
-                if opcja[k] in komputer:
-                    zajete_komputer += 1
-                elif opcja[k] in uzytkownik:
-                    zajete_uzytkownik += 1
-                elif opcja[k] in wolne_numery:
-                    wolne_teraz += 1
-                    nr = opcja[k]
-            if zajete_komputer == 2 and wolne_teraz == 1:
-                wybrane = wolne[nr - 1]
-                przeciwnik(wybrane)
-                index = wolne.index(wybrane)
-                wolne[index] = 0
-                wolne_numery[index] = 0
-                komputer += [nr]
-                flaga_teraz = 1
-                akcja = 0
-                break
-
-        if flaga_teraz == 0:
-            for m in range(len(zwyciestwa)):
-                opcja2 = zwyciestwa[m]
-                zajete_komputer2 = 0 
-                zajete_uzytkownik2 = 0
-                wolne_teraz2 = 0
-                for n in range(len(opcja2)):
-                    if opcja2[n] in uzytkownik:
-                        zajete_uzytkownik2 += 1
-                    elif opcja2[n] in komputer:
-                        zajete_komputer2 += 1
-                    elif opcja2[n] in wolne_numery:
-                        wolne_teraz2 +=1
-                        nr2 = opcja2[n]
-                if zajete_uzytkownik2 == 2 and wolne_teraz2 == 1:
-                    wybrane2 = wolne[nr2 - 1]
-                    przeciwnik(wybrane2)
-                    index = wolne.index(wybrane2)
+        if flaga == 0:
+            for j in range(len(zwyciestwa)):
+                opcja = zwyciestwa[j]
+                zajete_komputer = 0 
+                zajete_uzytkownik = 0
+                wolne_teraz = 0
+                for k in range(len(opcja)):
+                    if opcja[k] in komputer:
+                        zajete_komputer += 1
+                    elif opcja[k] in uzytkownik:
+                        zajete_uzytkownik += 1
+                    elif opcja[k] in wolne_numery:
+                        wolne_teraz += 1
+                        nr = opcja[k]
+                if zajete_komputer == 2 and wolne_teraz == 1:
+                    wybrane = wolne[nr - 1]
+                    przeciwnik(wybrane)
+                    index = wolne.index(wybrane)
                     wolne[index] = 0
                     wolne_numery[index] = 0
-                    komputer += [nr2]
-                    flaga_teraz2 = 1
+                    komputer += [nr]
+                    flaga_teraz = 1
                     akcja = 0
                     break
 
-        if flaga_teraz2 == 0:
-            dostepne = [pole for pole in wolne if pole != 0]
-            if akcja == 1 and flaga == 0 and dostepne:
-                losowe_pole = random.choice(dostepne)
-                index = wolne.index(losowe_pole)
-                nr3 = wolne_numery[index]
-                przeciwnik(losowe_pole)
-                wolne[index] = 0
-                wolne_numery[index] = 0
-                komputer += [nr3]
-                akcja = 0
+            if flaga_teraz == 0:
+                for m in range(len(zwyciestwa)):
+                    opcja2 = zwyciestwa[m]
+                    zajete_komputer2 = 0 
+                    zajete_uzytkownik2 = 0
+                    wolne_teraz2 = 0
+                    for n in range(len(opcja2)):
+                        if opcja2[n] in uzytkownik:
+                            zajete_uzytkownik2 += 1
+                        elif opcja2[n] in komputer:
+                            zajete_komputer2 += 1
+                        elif opcja2[n] in wolne_numery:
+                            wolne_teraz2 +=1
+                            nr2 = opcja2[n]
+                    if zajete_uzytkownik2 == 2 and wolne_teraz2 == 1:
+                        wybrane2 = wolne[nr2 - 1]
+                        przeciwnik(wybrane2)
+                        index = wolne.index(wybrane2)
+                        wolne[index] = 0
+                        wolne_numery[index] = 0
+                        komputer += [nr2]
+                        flaga_teraz2 = 1
+                        akcja = 0
+                        break
+
+            if flaga_teraz2 == 0:
+                dostepne = [pole for pole in wolne if pole != 0]
+                if akcja == 1 and flaga == 0 and dostepne:
+                    losowe_pole = random.choice(dostepne)
+                    index = wolne.index(losowe_pole)
+                    nr3 = wolne_numery[index]
+                    przeciwnik(losowe_pole)
+                    wolne[index] = 0
+                    wolne_numery[index] = 0
+                    komputer += [nr3]
+                    akcja = 0
 
         # sprawdzwenie wygranej komputera
         for i in range(len(zwyciestwa)):

@@ -2,7 +2,6 @@
 
 import turtle
 import random
-import time
 
 ninja = turtle.Turtle()
 turtle.bgcolor("#C0D9D9")
@@ -104,11 +103,9 @@ def rysunek(a,b):
     if symbol == "o" and ilosc < 5:
         kolko(a, b, ninja)
         ilosc += 1
-        time.sleep(1)
     elif symbol == "x" and ilosc < 5:
         krzyzyk(a, b, ninja)
         ilosc += 1
-        time.sleep(1)
 
 def przeciwnik(el):
     if symbol == "x":
